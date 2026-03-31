@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbwifS62IlXBVe-5-OS5HhcvioW2Dwfjyo-fBTjylrWZOeKFOxZ5lTIpY7KMXdOrBtQOtA/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycby5fNPo7rJYlQKK6WjNynoOrr3pEWknLqsi2jnhNvXcCARAWrlXnqkBqO8Mn2F6QDZo/exec";
 
 let socialrings = [];
 let schedules = [];

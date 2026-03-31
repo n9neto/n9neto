@@ -1,5 +1,5 @@
 const API_URL =
-  "https://script.google.com/macros/s/AKfycbwifS62IlXBVe-5-OS5HhcvioW2Dwfjyo-fBTjylrWZOeKFOxZ5lTIpY7KMXdOrBtQOtA/exec";
+  "https://script.google.com/macros/s/AKfycby5fNPo7rJYlQKK6WjNynoOrr3pEWknLqsi2jnhNvXcCARAWrlXnqkBqO8Mn2F6QDZo/exec";
 
 const pages = document.querySelectorAll(".page");
 let currentPage = 0;
@@ -78,12 +78,18 @@ function validateCurrentPageBeforeNext() {
   }
 
   if (currentPage === 2) {
+    const name = document.getElementById("nameInput")?.value.trim() || "";
     const age = document.getElementById("ageInput")?.value.trim() || "";
     const job = document.getElementById("jobInput")?.value.trim() || "";
     const charm = document.getElementById("charmInput")?.value.trim() || "";
 
     if (!selectedGender) {
       showToast("성별을 선택해주세요.");
+      return false;
+    }
+
+    if (!name) {
+      showToast("이름을 입력해주세요.");
       return false;
     }
 
@@ -333,6 +339,7 @@ function bindSubmitEvent() {
       schedule_label: selectedScheduleLabel,
 
       nickname: document.getElementById("nicknameInput")?.value.trim() || "",
+      name: document.getElementById("nameInput")?.value.trim() || "",
       gender: selectedGender,
       age: document.getElementById("ageInput")?.value.trim() || "",
       job: document.getElementById("jobInput")?.value.trim() || "",
@@ -359,6 +366,10 @@ function bindSubmitEvent() {
     }
     if (!payload.gender) {
       showToast("성별을 선택해주세요.");
+      return;
+    }
+    if (!payload.name) {
+      showToast("이름을 입력해주세요.");
       return;
     }
     if (!payload.age) {
