@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/index.css" />
+  </head>
+  <body>
+    <div class="page">
+      <section class="socialring-main">
+        <img
+          id="main-socialring-image"
+          class="main-socialring-image hidden"/>
+      </section>
+
+      <main class="content">
+        <div class="loading-wrap" id="loading-wrap">
+          <div class="loading-spinner"></div>
+        </div>
+
+        <section class="socialring-list" id="socialring-list"></section>
+      </main>
+    </div>
+
+    <div class="modal hidden" id="schedule-modal">
+      <div class="modal-overlay" id="modal-overlay"></div>
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title-wrap">
+            <h3 id="modal-socialring-title"></h3>
+            <p id="modal-socialring-desc"></p>
+          </div>
+
+          <button
+            class="modal-close"
+            id="modal-close"
+            type="button"
+            aria-label="닫기"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div class="schedule-list" id="schedule-list"></div>
+        <p class="empty-message hidden" id="empty-message">
+          선택 가능한 시간이 없습니다.
+        </p>
+      </div>
+    </div>
+
+    <script src="./js/index.js"></script>
+  </body>
+</html>
