@@ -91,15 +91,15 @@ img {
 }
 
 .socialring {
-  display: flex;
-  gap: 14px;
-  padding: 12px;
-  border-radius: 20px;
-  background: #FFFFFF;
-  border: 1px solid #000000;
-  color: #000000;
-  text-decoration: none;
-  backdrop-filter: blur(8px);
+    display: flex;
+    gap: 14px;
+    padding: 12px;
+    border-radius: 20px;
+    background: #000000;
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
+    text-decoration: none;
+    backdrop-filter: blur(8px);
 }
 
 .socialring-button {
