@@ -80,7 +80,6 @@ img {
 .socialring-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
   margin-top: auto;
 }
 
@@ -100,6 +99,7 @@ img {
     color: #FFFFFF;
     text-decoration: none;
     backdrop-filter: blur(8px);
+    margin-bottom: 15px;
 }
 
 .socialring-button {
