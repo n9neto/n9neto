@@ -87,6 +87,34 @@ function renderMainImage(items) {
   });
 }
 
+function isPastSchedule(scheduleLabel) {
+  if (!scheduleLabel) return false;
+
+  const now = new Date();
+  const match = String(scheduleLabel)
+    .trim()
+    .match(/(\d{2,4})[.\-/](\d{1,2})[.\-/](\d{1,2}).*?(\d{1,2}):(\d{2})/);
+
+  if (!match) return false;
+
+  let [, year, month, day, hour, minute] = match;
+
+  year = Number(year);
+  if (year < 100) {
+    year += 2000;
+  }
+
+  const scheduleDate = new Date(
+    year,
+    Number(month) - 1,
+    Number(day),
+    Number(hour),
+    Number(minute)
+  );
+
+  return scheduleDate.getTime() < now.getTime();
+}
+
 function renderSocialrings(items) {
   const listEl = document.getElementById("socialring-list");
 
@@ -166,22 +194,28 @@ const stepImage2 =
   } else {
     emptyEl.classList.add("hidden");
 
-    scheduleListEl.innerHTML = filteredSchedules.map(item => `
-      <button
-        type="button"
-        class="schedule-item"
-        data-socialring-id="${socialring["소셜링ID"] || ""}"
-        data-socialring-name="${socialring["소셜링명"] || ""}"
-        data-socialring-desc="${socialring["설명"] || ""}"
-        data-main-image="${socialring["main_img"] || ""}"
-        data-step-image1="${stepImage1}"
-        data-step-image2="${stepImage2}"
-        data-schedule-id="${item["시간ID"] || ""}"
-        data-schedule-label="${item["시간명"] || ""}"
-      >
-        ${item["시간명"] || ""}
-      </button>
-    `).join("");
+    scheduleListEl.innerHTML = filteredSchedules.map(item => {
+      const scheduleLabel = item["시간명"] || "";
+      const hiddenStyle = isPastSchedule(scheduleLabel) ? 'style="display:none;"' : "";
+
+      return `
+        <button
+          type="button"
+          class="schedule-item"
+          ${hiddenStyle}
+          data-socialring-id="${socialring["소셜링ID"] || ""}"
+          data-socialring-name="${socialring["소셜링명"] || ""}"
+          data-socialring-desc="${socialring["설명"] || ""}"
+          data-main-image="${socialring["main_img"] || ""}"
+          data-step-image1="${stepImage1}"
+          data-step-image2="${stepImage2}"
+          data-schedule-id="${item["시간ID"] || ""}"
+          data-schedule-label="${scheduleLabel}"
+        >
+          ${scheduleLabel}
+        </button>
+      `;
+    }).join("");
 
     bindScheduleEvents();
   }
